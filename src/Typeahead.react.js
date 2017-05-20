@@ -148,6 +148,14 @@ const Typeahead = createReactClass({
      * Propagate <RETURN> event to parent form.
      */
     submitFormOnEnter: PropTypes.bool,
+    /**
+     * Invoked when the enter key pressed.
+     */
+    handleEnterKeyPress: _react.PropTypes.func,
+    /**
+    * Hide menu if no results found
+    */
+    hideMenuIfNoResults: _react.PropTypes.bool
   },
 
   getDefaultProps() {
@@ -174,6 +182,8 @@ const Typeahead = createReactClass({
       paginate: true,
       selected: [],
       submitFormOnEnter: false,
+      hideMenuIfNoResults: false
+
     };
   },
 
@@ -252,7 +262,7 @@ const Typeahead = createReactClass({
   },
 
   render() {
-    const {allowNew, className, dropup, labelKey, paginate} = this.props;
+    const {allowNew, className, dropup, hideMenuIfNoResults, labelKey, paginate} = this.props;
     const {shownResults, text} = this.state;
 
     // First filter the results by the input string.
@@ -269,6 +279,19 @@ const Typeahead = createReactClass({
     // Add the custom option.
     if (allowNew) {
       results = addCustomOption(results, text, labelKey);
+    }
+
+    if(hideMenuIfNoResults && results.length === 0) {
+      return _react2.default.createElement(
+        'div',
+        {
+          className: (0, _classnames2.default)('bootstrap-typeahead', 'clearfix', 'open', {
+            'dropup': dropup
+          }, className),
+          style: { position: 'relative' } },
+        this._renderInput(results),
+        this._renderAux()
+      );
     }
 
     return (
@@ -557,12 +580,15 @@ const Typeahead = createReactClass({
         if (showMenu && activeItem) {
           this._handleAddOption(activeItem);
         }
+        if (this.props.handleEnterKeyPress) {
+          this.props.handleEnterKeyPress(options, e);
+        }
         break;
     }
   },
 
   _handleAddOption(selectedOption) {
-    const {multiple, labelKey, onChange, onInputChange} = this.props;
+    const {multiple, labelKey, menuSelectHandler, onChange, onInputChange} = this.props;
 
     let selected;
     let text;
@@ -588,6 +614,9 @@ const Typeahead = createReactClass({
 
     onChange(selected);
     onInputChange(text);
+    if(menuSelectHandler) {
+      menuSelectHandler(selected)
+    }
   },
 
   _handlePagination(e) {
