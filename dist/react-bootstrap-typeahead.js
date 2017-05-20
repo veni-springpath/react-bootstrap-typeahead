@@ -2834,15 +2834,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _classnames = __webpack_require__(3);
 
-	var _classnames3 = _interopRequireDefault(_classnames);
+	var _classnames2 = _interopRequireDefault(_classnames);
 
 	var _reactOnclickoutside = __webpack_require__(112);
 
 	var _reactOnclickoutside2 = _interopRequireDefault(_reactOnclickoutside);
 
-	var _react3 = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var _react4 = _interopRequireDefault(_react3);
+	var _react2 = _interopRequireDefault(_react);
 
 	var _propTypes = __webpack_require__(2);
 
@@ -3026,11 +3026,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Invoked when the enter key pressed.
 	     */
-	    handleEnterKeyPress: _react.PropTypes.func,
+	    handleEnterKeyPress: _propTypes2.default.func,
 	    /**
 	    * Hide menu if no results found
 	    */
-	    hideMenuIfNoResults: _react.PropTypes.bool
+	    hideMenuIfNoResults: _propTypes2.default.bool
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -3160,17 +3160,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    if (hideMenuIfNoResults && results.length === 0) {
-	      return _react2.default.createElement('div', {
-	        className: (0, _classnames2.default)('bootstrap-typeahead', 'clearfix', 'open', {
-	          'dropup': dropup
-	        }, className),
-	        style: { position: 'relative' } }, this._renderInput(results), this._renderAux());
+	      return _react2.default.createElement(
+	        'div',
+	        {
+	          className: (0, _classnames2.default)('bootstrap-typeahead', 'clearfix', 'open', {
+	            'dropup': dropup
+	          }, className),
+	          style: { position: 'relative' } },
+	        this._renderInput(results),
+	        this._renderAux()
+	      );
 	    }
 
-	    return _react4.default.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      {
-	        className: (0, _classnames3.default)('bootstrap-typeahead', 'clearfix', 'open', {
+	        className: (0, _classnames2.default)('bootstrap-typeahead', 'clearfix', 'open', {
 	          'dropup': dropup
 	        }, className),
 	        style: { position: 'relative' } },
@@ -3262,7 +3267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Input = multiple ? _TokenizerInput2.default : _TypeaheadInput2.default;
 	    var inputProps = { bsSize: bsSize, disabled: disabled, name: name, placeholder: placeholder, renderToken: renderToken };
 
-	    return _react4.default.createElement(Input, _extends({}, inputProps, {
+	    return _react2.default.createElement(Input, _extends({}, inputProps, {
 	      activeIndex: activeIndex,
 	      activeItem: activeItem,
 	      hasAux: !!this._renderAux(),
@@ -3323,12 +3328,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      text: text
 	    };
 
-	    var menu = renderMenu ? renderMenu(results, menuProps) : _react4.default.createElement(_TypeaheadMenu2.default, _extends({}, menuProps, {
+	    var menu = renderMenu ? renderMenu(results, menuProps) : _react2.default.createElement(_TypeaheadMenu2.default, _extends({}, menuProps, {
 	      options: results,
 	      renderMenuItemChildren: renderMenuItemChildren
 	    }));
 
-	    return _react4.default.createElement(
+	    return _react2.default.createElement(
 	      _Overlay2.default,
 	      {
 	        container: bodyContainer ? document.body : this,
@@ -3348,11 +3353,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    if (isLoading) {
-	      return _react4.default.createElement(_Loader2.default, { bsSize: bsSize });
+	      return _react2.default.createElement(_Loader2.default, { bsSize: bsSize });
 	    }
 
 	    if (clearButton && !disabled && this.state.selected.length) {
-	      return _react4.default.createElement(_ClearButton2.default, {
+	      return _react2.default.createElement(_ClearButton2.default, {
 	        bsSize: bsSize,
 	        className: 'bootstrap-typeahead-clear-button',
 	        onClick: this.clear

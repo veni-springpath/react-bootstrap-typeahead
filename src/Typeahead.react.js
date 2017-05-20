@@ -151,11 +151,11 @@ const Typeahead = createReactClass({
     /**
      * Invoked when the enter key pressed.
      */
-    handleEnterKeyPress: _react.PropTypes.func,
+    handleEnterKeyPress: PropTypes.func,
     /**
     * Hide menu if no results found
     */
-    hideMenuIfNoResults: _react.PropTypes.bool
+    hideMenuIfNoResults: PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -182,7 +182,7 @@ const Typeahead = createReactClass({
       paginate: true,
       selected: [],
       submitFormOnEnter: false,
-      hideMenuIfNoResults: false
+      hideMenuIfNoResults: false,
 
     };
   },
@@ -281,16 +281,16 @@ const Typeahead = createReactClass({
       results = addCustomOption(results, text, labelKey);
     }
 
-    if(hideMenuIfNoResults && results.length === 0) {
-      return _react2.default.createElement(
-        'div',
-        {
-          className: (0, _classnames2.default)('bootstrap-typeahead', 'clearfix', 'open', {
-            'dropup': dropup
-          }, className),
-          style: { position: 'relative' } },
-        this._renderInput(results),
-        this._renderAux()
+    if (hideMenuIfNoResults && results.length === 0) {
+      return (
+        <div
+          className={cx('bootstrap-typeahead', 'clearfix', 'open', {
+            'dropup': dropup,
+          }, className)}
+          style={{position: 'relative'}}>
+          {this._renderInput(results)}
+          {this._renderAux()}
+        </div>
       );
     }
 
@@ -614,8 +614,8 @@ const Typeahead = createReactClass({
 
     onChange(selected);
     onInputChange(text);
-    if(menuSelectHandler) {
-      menuSelectHandler(selected)
+    if (menuSelectHandler) {
+      menuSelectHandler(selected);
     }
   },
 
