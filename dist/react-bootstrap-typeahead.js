@@ -1513,11 +1513,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function _handleClick(e) {
 	      var _props2 = this.props,
 	          disabled = _props2.disabled,
-	          onClick = _props2.onClick;
+	          onClick = _props2.onClick,
+	          onMenuItemSelect = _props2.onMenuItemSelect;
 
 
 	      e.preventDefault();
 	      !disabled && onClick(e);
+	      if (onMenuItemSelect) {
+	        onMenuItemSelect(e);
+	      }
 	    }
 	  }]);
 
@@ -3305,6 +3309,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        emptyLabel = _props6.emptyLabel,
 	        labelKey = _props6.labelKey,
 	        maxHeight = _props6.maxHeight,
+	        menuSelectHandler = _props6.menuSelectHandler,
 	        minLength = _props6.minLength,
 	        newSelectionPrefix = _props6.newSelectionPrefix,
 	        paginationText = _props6.paginationText,
@@ -3321,6 +3326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      emptyLabel: emptyLabel,
 	      labelKey: labelKey,
 	      maxHeight: maxHeight,
+	      menuSelectHandler: menuSelectHandler,
 	      newSelectionPrefix: newSelectionPrefix,
 	      paginationText: paginationText,
 	      onPaginate: this._handlePagination,
@@ -3476,7 +3482,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _props8 = this.props,
 	        multiple = _props8.multiple,
 	        labelKey = _props8.labelKey,
-	        menuSelectHandler = _props8.menuSelectHandler,
 	        onChange = _props8.onChange,
 	        onInputChange = _props8.onInputChange;
 
@@ -3505,9 +3510,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    onChange(selected);
 	    onInputChange(text);
-	    if (menuSelectHandler) {
-	      menuSelectHandler(selected);
-	    }
 	  },
 	  _handlePagination: function _handlePagination(e) {
 	    var _props9 = this.props,
@@ -3908,14 +3910,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	          onMenuItemClick = _context.onMenuItemClick;
 
 	      var _props = this.props,
+	          _onMenuItemSelect = _props.onMenuItemSelect,
 	          option = _props.option,
 	          position = _props.position,
-	          props = _objectWithoutProperties(_props, ['option', 'position']);
+	          props = _objectWithoutProperties(_props, ['onMenuItemSelect', 'option', 'position']);
 
 	      return _react2.default.createElement(Component, _extends({}, props, {
 	        active: activeIndex === position,
 	        onClick: function onClick() {
 	          return onMenuItemClick(option);
+	        },
+	        onMenuItemSelect: function onMenuItemSelect() {
+	          if (_onMenuItemSelect) {
+	            return _onMenuItemSelect([option]);
+	          }
+	          return null;
 	        }
 	      }));
 	    },
@@ -7880,6 +7889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _props = this.props,
 	          labelKey = _props.labelKey,
 	          newSelectionPrefix = _props.newSelectionPrefix,
+	          onMenuItemSelect = _props.onMenuItemSelect,
 	          renderMenuItemChildren = _props.renderMenuItemChildren,
 	          text = _props.text;
 
@@ -7887,6 +7897,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var menuItemProps = {
 	        disabled: option.disabled,
 	        key: idx,
+	        onMenuItemSelect: onMenuItemSelect,
 	        option: option,
 	        position: idx
 	      };
