@@ -419,6 +419,7 @@ const Typeahead = createReactClass({
       emptyLabel,
       labelKey,
       maxHeight,
+      menuSelectHandler,
       minLength,
       newSelectionPrefix,
       paginationText,
@@ -434,6 +435,7 @@ const Typeahead = createReactClass({
       emptyLabel,
       labelKey,
       maxHeight,
+      menuSelectHandler,
       newSelectionPrefix,
       paginationText,
       onPaginate: this._handlePagination,
@@ -588,7 +590,7 @@ const Typeahead = createReactClass({
   },
 
   _handleAddOption(selectedOption) {
-    const {multiple, labelKey, menuSelectHandler, onChange, onInputChange} = this.props;
+    const {multiple, labelKey, onChange, onInputChange} = this.props;
 
     let selected;
     let text;
@@ -614,9 +616,7 @@ const Typeahead = createReactClass({
 
     onChange(selected);
     onInputChange(text);
-    if (menuSelectHandler) {
-      menuSelectHandler(selected);
-    }
+
   },
 
   _handlePagination(e) {

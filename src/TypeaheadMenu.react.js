@@ -45,6 +45,7 @@ class TypeaheadMenu extends React.Component {
     const {
       labelKey,
       newSelectionPrefix,
+      onMenuItemSelect,
       renderMenuItemChildren,
       text,
     } = this.props;
@@ -52,6 +53,7 @@ class TypeaheadMenu extends React.Component {
     const menuItemProps = {
       disabled: option.disabled,
       key: idx,
+      onMenuItemSelect,
       option,
       position: idx,
     };

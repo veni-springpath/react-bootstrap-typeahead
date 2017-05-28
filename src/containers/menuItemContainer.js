@@ -53,13 +53,20 @@ const menuItemContainer = Component => (
 
     render() {
       const {activeIndex, onMenuItemClick} = this.context;
-      const {option, position, ...props} = this.props;
+      const {onMenuItemSelect, option, position, ...props} = this.props;
 
       return (
         <Component
           {...props}
           active={activeIndex === position}
           onClick={() => onMenuItemClick(option)}
+          onMenuItemSelect={() => {
+            if (onMenuItemSelect) {
+              return onMenuItemSelect([option]);
+            }
+            return null;
+          }
+        }
         />
       );
     },
