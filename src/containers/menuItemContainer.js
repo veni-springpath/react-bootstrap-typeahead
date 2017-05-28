@@ -62,7 +62,7 @@ const menuItemContainer = Component => (
           onClick={() => onMenuItemClick(option)}
           onMenuItemSelect={() => {
             if (onMenuItemSelect) {
-              return onMenuItemSelect([option]);
+              return onMenuItemSelect(option);
             }
             return null;
           }

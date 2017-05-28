@@ -583,7 +583,7 @@ const Typeahead = createReactClass({
           this._handleAddOption(activeItem);
         }
         if (this.props.handleEnterKeyPress) {
-          this.props.handleEnterKeyPress(options, e);
+          this.props.handleEnterKeyPress(activeItem || options, e);
         }
         break;
     }
