@@ -3473,7 +3473,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this._handleAddOption(activeItem);
 	        }
 	        if (this.props.handleEnterKeyPress) {
-	          this.props.handleEnterKeyPress(options, e);
+	          this.props.handleEnterKeyPress(activeItem || options, e);
 	        }
 	        break;
 	    }
@@ -3922,7 +3922,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        onMenuItemSelect: function onMenuItemSelect() {
 	          if (_onMenuItemSelect) {
-	            return _onMenuItemSelect([option]);
+	            return _onMenuItemSelect(option);
 	          }
 	          return null;
 	        }
